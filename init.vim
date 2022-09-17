@@ -35,11 +35,32 @@ call plug#end()
 nnoremap <silent><F2> :TagbarToggle <CR>
 nnoremap <silent><F1> :NERDTreeToggle<CR>
 
-set tabstop=4
+set tabstop=22
 set shiftwidth=4
 set expandtab
 
 set termguicolors
+
+" 이 옵션은 버퍼를 수정한 직후 버퍼를 감춰지도록 한다.
+" 이 방법으로 버퍼를 사용하려면 거의 필수다.
+set hidden
+
+" 버퍼 새로 열기
+" 원래 이 단축키로 바인딩해 두었던 :tabnew를 대체한다.
+nmap <leader>T :enew<cr>
+
+" 다음 버퍼로 이동
+nmap <leader>l :bnext<CR>
+
+" 이전 버퍼로 이동
+nmap <leader>h :bprevious<CR>
+
+" 현재 버퍼를 닫고 이전 버퍼로 이동
+" 탭 닫기 단축키를 대체한다.
+nmap <leader>bq :bp <BAR> bd #<CR>
+
+" 모든 버퍼와 각 버퍼 상태 출력
+nmap <leader>bl :ls<CR>
 
 " ==========================
 " coc 
@@ -194,16 +215,20 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
 " ==========================
-" tagbar
+" airline
 " ==========================
 
 "상단에 표시
-let g:airline_statusline_ontop = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_disable_statusline = 0
+let g:airline_statusline_ontop = 0 
 let g:airline_powerline_fonts = 1
-"luna 테마 사용
+" 버퍼 목록 켜기
+let g:airline#extensions#tabline#enabled = 1
+" 파일명만 출력
+let g:airline#extensions#tabline#fnamemod = ':t'
+" 테마 설정
+let g:airline_theme = 'base16'
 
 
 " ==========================
@@ -233,7 +258,7 @@ colorscheme ayu
 " default: 0
 let g:mkdp_auto_start = 0
 
-" set to 1, the nvim will auto close current preview window when change
+" set to 1, the nvim will auto closcurrent preview window when change
 " from markdown buffer to another buffer
 " default: 1
 let g:mkdp_auto_close = 1
