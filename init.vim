@@ -19,7 +19,7 @@ Plug 'akinsho/toggleterm.nvim', { 'tag': '*' }
 Plug 'universal-ctags/ctags'
 Plug 'tpope/vim-fugitive'
 
-Plug 'Shatur/neovim-ayu'
+Plug 'catppuccin/nvim', {'as': 'catpuccin'}
 
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
@@ -29,14 +29,21 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'eslint/eslint'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-set runtimepath^=~/coc-epscript
+Plug 'https://github.com/xiyaowong/nvim-transparent.git'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'lambdalisue/suda.vim'
+Plug 'wakatime/vim-wakatime'
+Plug 'windwp/nvim-ts-autotag'
+
+set runtimepath^=~/Programming/epscript-language-server/coc-epscript
 call plug#end()
 
 nnoremap <silent><F2> :TagbarToggle <CR>
 nnoremap <silent><F1> :NERDTreeToggle<CR>
 
 set tabstop=22
-set shiftwidth=4
+set shiftwidth=2
 set expandtab
 
 set termguicolors
@@ -249,7 +256,7 @@ set nu
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 
 lua require("config")
-colorscheme ayu
+colorscheme catppuccin 
 
 " ==========================
 " markdown preview 
@@ -365,3 +372,6 @@ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+" Autotag
+lua require("nvim-ts-autotag").setup()
